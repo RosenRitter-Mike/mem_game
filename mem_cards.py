@@ -18,25 +18,30 @@ def card_game(my_deck: list[str]) -> None:
             print("game restarted");
             card_game(my_deck);
             return None;
-        elif int(choi1) > 11 or int(choi1) < 0:
-            print("invalid choice, chose again.");
-            continue;
-        elif int(choi2) > 11 or int(choi2) < 0:
-            print("invalid choice, chose again.");
-            continue;
         else:
-            c1 = int(choi1);
-            c2 = int(choi2);
-            if cards[c1] != "_" or cards[c2] != "_":
-                print("invalid choice, choose again.");
-                continue;
-            print(f"first card: {my_deck[c1]}, second card: {my_deck[c2]}");
-            if my_deck[c1] == my_deck[c2]:
-                cards[c1] = my_deck[c1];
-                cards[c2] = my_deck[c2];
-                print("It's a match!");
-            else:
-                print("guess again!");
+            try:
+                if int(choi1) > 11 or int(choi1) < 0:
+                    print(f"invalid choice for card1, choose again.");
+                    continue;
+                elif int(choi2) > 11 or int(choi2) < 0:
+                    print("invalid choice for card2, choose again.");
+                    continue;
+                else:
+                    c1 = int(choi1);
+                    c2 = int(choi2);
+                    if cards[c1] != "_" or cards[c2] != "_":
+                        print("invalid choice, choose again.");
+                        continue;
+                    print(f"first card: {my_deck[c1]}, second card: {my_deck[c2]}");
+                    if my_deck[c1] == my_deck[c2]:
+                        cards[c1] = my_deck[c1];
+                        cards[c2] = my_deck[c2];
+                        print("It's a match!");
+                    else:
+                        print("guess again!");
+            except Exception as e:
+               print("The error is: ", e);
+
 
 
         if "_" not in cards:
